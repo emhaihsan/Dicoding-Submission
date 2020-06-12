@@ -1,0 +1,3 @@
+- Foto
+- Logo HTML, CSS, Javascript
+- Gambar pendukung
