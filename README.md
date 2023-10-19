@@ -16,12 +16,4 @@ In this course, I learned the fundamental concepts of web development, including
 
 ## Rock, Paper, Scissors Classification
 
-### Project Description
-
-During this course, I delved into machine learning and image classification. The primary project involved building a Rock, Paper, Scissors image classifier using a deep learning model. You can find the code and resources for this project in the "rock-paper-scissors-classification" directory.
-
-#### Technologies and Tools Used
-
-- Python
-- Deep Learning (TensorFlow)
-- Image Classification
+*IN PROGRESS*
