@@ -7,20 +7,25 @@ Original file is located at
     https://colab.research.google.com/drive/1zSLA1R6DRz3MNmyQIN2m-E1WYgQpag3T
 """
 
-import tensorflow as tf
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.callbacks import ModelCheckpoint
-from sklearn.model_selection import train_test_split
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 import os
 import tarfile
 import requests
+import numpy as np
+import pandas as pd
+import tensorflow as tf
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.callbacks import ModelCheckpoint
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 from zipfile import ZipFile
 
-"""![](https://storage.googleapis.com/kaggle-datasets-images/1251943/2088085/480fac10e111e15e14ef6684cf9da7ea/dataset-cover.jpg?t=2021-04-05-08-15-10)"""
+"""![](https://storage.googleapis.com/kaggle-datasets-images/1251943/2088085/480fac10e111e15e14ef6684cf9da7ea/dataset-cover.jpg?t=2021-04-05-08-15-10)
+
+This is a dataset for binary sentiment classification containing substantially more data than previous benchmark datasets. We provide a set of 25,000 highly polar movie reviews for training, and 25,000 for testing. There is additional unlabeled data for use as well. Raw text and already processed bag of words formats are provided. See the README file contained in the release for more details.
+
+## 1. Download Data
+"""
 
 url = "https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
 
@@ -31,23 +36,20 @@ response = requests.get(url)
 with open(download_path, "wb") as f:
     f.write(response.content)
 
-# Ekstraksi dataset
 with tarfile.open(download_path, "r:gz") as tar:
     tar.extractall("/content/")
 
-# Periksa isi direktori
 os.listdir("/content/aclImdb")
 
-# Ganti path sesuai dengan tempat dataset diekstrak di Colab
+"""## 2. Melihat contoh data"""
+
 dataset_path = '/content/aclImdb'
 
-# Fungsi untuk membaca teks dari file
 def read_text_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         text = file.read()
     return text
 
-# Menampilkan beberapa contoh data
 pos_dir = os.path.join(dataset_path, 'train', 'pos')
 neg_dir = os.path.join(dataset_path, 'train', 'neg')
 
@@ -63,7 +65,6 @@ for file_name in os.listdir(neg_dir)[:5]:
     text = read_text_file(file_path)
     print(f"Review: {text}\n")
 
-# Load data train
 texts_train = []
 labels_train = []
 for label in ['pos', 'neg']:
@@ -74,7 +75,6 @@ for label in ['pos', 'neg']:
                 texts_train.append(f.read())
             labels_train.append(1 if label == 'pos' else 0)
 
-# Load data test
 texts_test = []
 labels_test = []
 for label in ['pos', 'neg']:
@@ -85,11 +85,11 @@ for label in ['pos', 'neg']:
                 texts_test.append(f.read())
             labels_test.append(1 if label == 'pos' else 0)
 
-# Combine train and test data
 texts = texts_train + texts_test
 labels = labels_train + labels_test
 
-# Tokenisasi dan Padding
+print(f"Terdapat {len(texts)} data di dalam dataset")
+
 max_words = 1000
 max_review_length = 300
 
@@ -104,6 +104,9 @@ x_train, x_val, y_train, y_val = train_test_split(x, y, test_size=0.2, random_st
 
 # konversi ke tf tensor
 x_train, x_val, y_train, y_val = tf.constant(x_train), tf.constant(x_val), tf.constant(y_train), tf.constant(y_val)
+
+print(f"Terdapat {len(x_train)} sampel untuk data latih")
+print(f"Terdapat {len(x_val)} sampel untuk data validasi")
 
 model = tf.keras.Sequential([
     tf.keras.layers.Embedding(input_dim=max_words, output_dim=32, input_length=max_review_length),
