@@ -1,19 +1,9 @@
 # Dicoding Academy Courses Repository
 
-This repository contains the projects and assignments I completed during two courses on Dicoding Academy: "Basic Web Programming" and "Rock, Paper, Scissors Classification."
+This repository contains the projects and assignments I completed during my courses on Dicoding Academy:
 
-## Basic Web with HTML, CSS, and JavaScript
-
-### Project Description
-
-In this course, I learned the fundamental concepts of web development, including HTML, CSS, and JavaScript. I applied these skills to create a simple, responsive web page that showcases my understanding of these technologies. The project is available in the "basic-web-project" folder.
-
-#### Technologies Used
-
-- HTML
-- CSS
-- JavaScript
-
-## Rock, Paper, Scissors Classification
-
-*IN PROGRESS*
+| Course                                                                          | Project                                                                                                                                                               | Description                                      |
+| ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| [Belajar Dasar Pemrograman Web](https://www.dicoding.com/academies/123)         | [Final Project](https://github.com/mhihsan/Dicoding/tree/master/belajar-dasar-pemrograman-web)                                                                        | Simple web design with html, css, and javascript |
+| [Belajar Machine Learning Untuk Pemula](https://www.dicoding.com/academies/184) | [Final Project](https://github.com/mhihsan/Dicoding/tree/master/belajar-machine-learning-untuk-pemula/rock-paper-scissors-classification.ipynb)                       | Rock, Paper, Scissors Classification             |
+| [Belajar Pengembangan Machine Learning](https://www.dicoding.com/academies/185) | [Project : NLP With Tensorflow](https://github.com/mhihsan/Dicoding/tree/master/belajar-pengembangan-machine-learning/project1/Project_1_NLP_dengan_Tensorflow.ipynb) | IMDB News Classification                         |
