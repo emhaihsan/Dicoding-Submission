@@ -21,8 +21,7 @@ from tensorflow.keras.layers import LSTM, Dense
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.optimizers import Adam
 
-# Load dataset (contoh dengan dataset Air Quality Prediction)
-# Download the ZIP file
+# Download Data Air Quality dari UCI
 url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00360/AirQualityUCI.zip'
 response = requests.get(url)
 
@@ -134,6 +133,8 @@ model.compile(optimizer=optimizer, loss=tf.keras.losses.Huber(), metrics=['mae']
 model.summary()
 
 # Membuat callback
+# Model Checkpoint untuk menyimpan model terbaik selama pelatihan dengan berpatokan pada nilai val loss
+# Menggunakan EarlyStopping agar model berhenti training ketika performanya tidak meningkat setelah 5 epoch
 checkpoint_path = "model.h5"
 checkpoint_callback = ModelCheckpoint(checkpoint_path,monitor='val_loss',save_best_only=True)
 early_stopping_callback = EarlyStopping(patience=5, restore_best_weights=True)
@@ -142,7 +143,7 @@ early_stopping_callback = EarlyStopping(patience=5, restore_best_weights=True)
 history = model.fit(train_ds, epochs=100, validation_data=val_ds, callbacks=[checkpoint_callback, early_stopping_callback])
 
 # Evaluate model
-val_mae = model.evaluate(val_ds)
+result = model.evaluate(val_ds)
 
 # Visualize training history
 plt.figure(figsize=(10, 6))
@@ -164,12 +165,23 @@ plt.ylabel('MAE')
 plt.legend()
 plt.show()
 
+# result menyimpan 2 nilai, indeks 0 merepresentasikan loss, indeks 1 merepresentasikan mae
+# indeks 0 disimpan ke variabel _ untuk menandakan bahwa variabel ini diabaikan
+# indeks 1 disimpan ke variabel val_mae untuk kemudian dicek apakah sudah memenuhi kriteria atau belum
+_ , val_mae = result
+
 # Check if MAE meets the criteria
 mae_threshold = 0.1 * (df['CO(GT)'].max() - df['CO(GT)'].min())
-if val_mae[1] < mae_threshold:
-  print("Model has met the MAE criteria.")
+
+print(f"Rerata Konsentrasi CO maksimal : {df['CO(GT)'].max()}")
+print(f"Rerata Konsentrasi CO minimal : {df['CO(GT)'].min()}")
+print(f"Threshold 10% MAE : {mae_threshold}")
+print(f"MAE pada data validasi: {val_mae}")
+print(f"Selisih MAE model dengan threshold :{mae_threshold - val_mae}")
+if val_mae < mae_threshold:
+  print("Model memenuhi kriteria MAE < 10% skala data")
 else:
-  print("Model has not met the MAE criteria. Try tuning parameters or model architecture.")
+  print("Model belum memenuhi kriteria MAE < 10% skala data. Coba tuning parameternya kembali")
 
 """## Project 2 : Membuat Model Machine Learning dengan Data Time Series
 
@@ -177,4 +189,3 @@ Nama : Muhammad Ihsan
 
 email : emhihsan@gmail.com
 """
-
