@@ -10,4 +10,4 @@ Teknologi yang digunakan:
 - Javascript
 
 Tampilan akhir:
-![alt text](https://github.com/mhihsan/Dicoding/tree/master/belajar-dasar-pemrograman-web/tampilan.png?raw=true)
+![alt text](https://github.com/mhihsan/Dicoding-Submission/blob/master/belajar-dasar-pemrograman-web/tampilan.png)
