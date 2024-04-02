@@ -50,8 +50,8 @@ nav a:hover {
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
   padding: 20px;
-  margin-top: 20px;
 }
 
 .jumbotron {
@@ -83,11 +83,14 @@ nav {
 main {
   padding: 20px;
   display: flex;
-  overflow: auto;
+  gap: 1.5rem;
 }
 
 #content {
   flex: 5;
+
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 aside {
@@ -97,10 +100,18 @@ aside {
 header {
   display: inline;
 }
-@media screen and (max-width: 1000px) {
-  #content,
-  aside {
-    width: 100%;
-    padding: 0;
+@media screen and (max-width: 1200px) {
+  main {
+    flex-flow: column wrap;
+  }
+
+  main aside {
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 768) {
+  nav ul {
+    justify-content: center;
   }
 }
