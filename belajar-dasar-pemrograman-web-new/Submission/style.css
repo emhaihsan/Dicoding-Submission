@@ -1,0 +1,58 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header nav {
+  float: right;
+}
+
+header nav a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+
+main {
+  display: flex;
+}
+
+article {
+  width: 70%;
+  padding: 20px;
+}
+
+aside {
+  width: 30%;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  article,
+  aside {
+    width: 100%;
+  }
+}
