@@ -1,6 +1,10 @@
-* {
+/* Checkpoint: Latihan landing page no.18 */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
+
 body {
   font-family: "Quicksand", sans-serif;
 
@@ -12,45 +16,21 @@ body {
 }
 
 header.navbar-container {
-  width: 100%;
-  max-width: 1200px;
-  padding-block: 1rem;
-  margin-inline: auto;
-  background-color: aqua;
-  color: #fff;
+  margin: 0 10px;
+  padding-left: 0;
   display: flex;
   justify-content: space-between;
+
   align-items: center;
-  z-index: 9999;
 }
-
 header.navbar-container .logo img {
-  height: 40px;
+  width: 150px;
 }
 
-header.navbar-container .nav-list ul {
-  padding-left: 0;
-
+.nav-list ul {
   display: flex;
-  justify-content: center;
   gap: 2rem 1rem;
 }
-
-header.navbar-container .nav-list li {
+.nav-list li {
   list-style-type: none;
-}
-
-header {
-  display: inline;
-}
-
-.navbar a {
-  color: inherit; /* Inherits color from navbar */
-  text-decoration: none; /* Removes underline */
-  padding: 10px;
-}
-
-.navbar a:hover {
-  background-color: #ddd; /* Changes background on hover */
-  color: #333; /* Changes text color on hover */
 }
