@@ -5,7 +5,7 @@ const {
   isStudentPassExam,
   findMax,
   findMin,
-} = require("../gradeCalculations");
+} = require("../gradealculations");
 
 describe("Testing averageExams", () => {
   test("should return the average of exam values", () => {
